@@ -1,0 +1,57 @@
+{% load static %}
+<html>
+<head>
+    <title>
+        SIMPLE IMPLEMENTATION OF WEATHER API
+    </title>
+<LINK REL="stylesheet" HREF="{% static 'css/bootstrap.min.css' %}">
+<style>
+    
+.aa{
+    float: left;
+}
+</style>
+</head>
+
+<body>
+<div class="text-success fixed-top ">
+    POWERED BY :<a class="text-danger" href="https://www.openweathermap.org/"> www.openweathermap.org </a>
+</div>
+<div class="bg bg-dark text-success text-center ">
+    <form method='POST'>
+        {{ form }}
+        {% csrf_token %}
+        <input type="submit" class=" btn btn-danger" value="ADD A CITY">
+    </form>
+</div>
+<div class="container">
+    {% for city_w in we %}
+
+    <div class="card rounded col-3 justify-content-center rounded shadow aa m-2">
+        <div class="card-title text-info shadow bg-dark "><h1>{{ city_w.city }}<h1></h1></div>
+        <div class="card-body text-danger "><table class="table shadow bg bg-light text-success">
+            <tr>
+                <td>TEMP</td>
+                <td>{{ city_w.temp }} K</td>
+            </tr>
+             <tr>
+                <td>WEATHER</td>
+                <td>{{ city_w.weather }}</td>
+            </tr>
+             <tr>
+                <td>min_temp</td>
+                <td>{{city_w.temp_min}} K</td>
+            </tr>
+             <tr class="mb-1">
+                <td>max_temp</td>
+                <td>{{city_w.temp_max}} K</td>
+            </tr>
+
+        </table>
+
+</div>
+    </div>
+{% endfor %}
+</div>
+</body>
+</html>
